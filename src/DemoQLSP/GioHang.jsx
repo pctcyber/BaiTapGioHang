@@ -1,16 +1,11 @@
 import React, { Component } from 'react'
 
 export default class GioHang extends Component {
-
-
     render() {
-
         let { gioHang, xoaGioHang, themSP,xoaSP } = this.props;
-
         let renderGioHang = () => {
-
+            
             return gioHang.map((sp, index) => {
-
                 return (<tr key={index}>
                     <th>{sp.maSP}</th>
                     <th>{sp.tenSP}</th>
@@ -19,20 +14,20 @@ export default class GioHang extends Component {
                     </th>
                     <th>{sp.giaBan}</th>
                     <th>{sp.soLuong}</th>
-                    <th>{sp.giaBan * sp.soLuong}</th>
+                    <th>{sp.giaBan * sp.soLuong}</th>``
                     <th>
                         <button className='btn btn-danger' onClick={() => {
-                            { xoaGioHang(sp) };
+                            xoaGioHang(sp) ;
                         }}>Delete</button>
                     </th>
                     <th>
                         <button onClick={() => {
-                            {themSP(sp)}
+                            themSP(sp)
                         }} className='btn btn-success'>+</button>
                     </th>
                     <th>
                         <button onClick = {() => {
-                            {xoaSP(sp)}
+                            xoaSP(sp)
                         }} className='btn btn-danger'>-</button>
                     </th>
                 </tr>)

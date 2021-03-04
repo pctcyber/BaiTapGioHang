@@ -6,20 +6,20 @@ export default class DanhSachSanPham extends Component {
 
     state = {
         spChiTiet: {
-            maSP: 1,
-            tenSP: "VinSmart Live",
-            manHinh: "AMOLED, 6.2\", Full HD+",
-            heDieuHanh: "Android 9.0 (Pie)",
-            cameraTruoc: "20 MP",
-            cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
-            ram: "4 GB",
-            rom: "64 GB",
-            giaBan: 5700000,
-            hinhAnh: "./img/vsphone.jpg"
+      "maSP": 1,
+      "tenSP": "VinSmart Live",
+      "manHinh": "AMOLED, 6.2\", Full HD+",
+      "heDieuHanh": "Android 9.0 (Pie)",
+      "cameraTruoc": "20 MP",
+      "cameraSau": "Chính 48 MP & Phụ 8 MP, 5 MP",
+      "ram": "4 GB",
+      "rom": "64 GB",
+      "giaBan": 5700000,
+      "hinhAnh": "./img/vsphone.jpg"
         },
         gioHang: [
 
-            // {  maSP: 1, tenSP: 'VinSmart Live',giaBan: 5700000, hinhAnh:'./img/vsphone.jpg', soLuong:1  }
+            {  maSP: 1, tenSP: 'VinSmart Live',giaBan: 5700000, hinhAnh:'./img/vsphone.jpg', soLuong:1  }
         ]
     }
 
@@ -129,11 +129,8 @@ export default class DanhSachSanPham extends Component {
 
     };
 
-
     render() {
-
         let { hinhAnh, tenSP, cameraTruoc, heDieuHanh, manHinh, cameraSau, rom, ram } = this.state.spChiTiet;
-
         return (
             <div className='container'>
 
@@ -147,7 +144,6 @@ export default class DanhSachSanPham extends Component {
                 <div className="row ">
                     {this.renderSanPham()}
                 </div>
-
 
                 <div className="row " style={{ marginTop: 125 }}>
                     <div className="col-5">

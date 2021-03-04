@@ -10,7 +10,7 @@ export default class SanPhamChiTiet extends Component {
                     <h4 className="card-title text-left">{sanPham.tenSP}</h4>
                     
                     <button onClick={() => {
-                        {chiTietSanPham(sanPham)}
+                        chiTietSanPham(sanPham)
                     }} className='btn btn-success '>Detail
                     </button>
                     

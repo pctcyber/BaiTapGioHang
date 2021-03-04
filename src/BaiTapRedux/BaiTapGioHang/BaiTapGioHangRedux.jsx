@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DanhSachSanPhamRedux from './DanhSachSanPhamRedux'
+import ModelDetail from './ModelDetail'
 import ModelGioHangRedux from './ModelGioHangRedux'
 
 export default class BaiTapGioHangRedux extends Component {

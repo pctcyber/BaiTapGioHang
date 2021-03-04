@@ -1,12 +1,11 @@
-import {combineReducers} from 'redux'
-import {GioHangReducer} from './GioHangReducer.jsx'
 
-// kho tong ung dung
+import {combineReducers} from 'redux';
+import {gioHangReducer} from './GioHangReducer.jsx'
+import {chiTietReducer} from './ChiTietReducer.jsx'
 
-export const rootReducer = combineReducers ({
+export const rootReducer = combineReducers({
 
-    
-    // noi chua cac reducer con cho moi nghiep vu
-    GioHangReducer: GioHangReducer,
+    GioHangReducer: gioHangReducer, 
+    ChiTietReducer: chiTietReducer,
 
 })
