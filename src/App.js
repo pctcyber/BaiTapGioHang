@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import BaiTapGioHangRedux from './BaiTapRedux/BaiTapGioHang/BaiTapGioHangRedux';
+import GameXucXac from './BaiTapRedux/GameXucXac/GameXucXac';
 import BTLayout from './BTLayout/BTLayout';
 import DemoQLSP from './DemoQLSP/DemoQLSP';
 
@@ -9,7 +10,8 @@ function App() {
     <div className="App">
       {/* <BTLayout/> */}
       {/* <DemoQLSP/> */}
-      <BaiTapGioHangRedux/>
+      {/* <BaiTapGioHangRedux/> */}
+      <GameXucXac/>
     </div>
   );
 }
