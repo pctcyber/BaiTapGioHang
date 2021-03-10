@@ -1,0 +1,67 @@
+.gameoantuti {
+	background-image: url(../../assets/img/bgGameTuTi.png);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	color: white;
+	background-size: cover;
+}
+.setup_size{
+
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.setup_size:hover{
+
+	border: 3px solid yellow;
+}
+
+
+.item_colum{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.nguoichoi{
+
+	background-color: white;
+	width: 90px;
+	height: 90px;
+	border-color:#45D994 ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 5px solid #45D994;
+	margin: 20px auto;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #45D994;
+	border-radius: .4em;
+	
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 35px solid transparent;
+	border-top-color: #45D994;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -17.5px;
+	margin-bottom: -15px;
+}

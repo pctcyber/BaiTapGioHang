@@ -10,3 +10,7 @@ export default class GameXucXac extends Component {
         )
     }
 }
+
+console.log();
+
+
