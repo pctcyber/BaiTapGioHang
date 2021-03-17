@@ -3,8 +3,6 @@ import './buble.css'
 import { connect } from 'react-redux'
 
 class MayChoi extends Component {
-
-
     render() {
 
         let keyframe = `@keyframes randomItem${Date.now()} {
