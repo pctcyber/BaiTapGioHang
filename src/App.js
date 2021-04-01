@@ -5,6 +5,8 @@ import GameOanTuTi from './BaiTapRedux/GameOanTuTi/GameOanTuTi';
 import GameXucXac from './BaiTapRedux/GameXucXac/GameXucXac';
 import BTLayout from './BTLayout/BTLayout';
 import DemoQLSP from './DemoQLSP/DemoQLSP';
+import ToDoListRCC from './ToDoList/ToDoListRCC';
+import ToDoListRFC from './ToDoList/ToDoListRFC';
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
       {/* <BTLayout/> */}
       {/* <DemoQLSP/> */}
       {/* <BaiTapGioHangRedux/> */}
-      <GameOanTuTi/>
+      {/* <GameOanTuTi/> */}
       {/* <GameXucXac/> */}
+      {/* <ToDoListRFC/> */}
+      <ToDoListRCC/>
     </div>
   );
 }
