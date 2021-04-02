@@ -23,7 +23,10 @@ export default class ToDoListRCC extends Component {
         promise.then((res) => {
 
             this.setState({
+                // ...this.state,
                 taskLisk: res.data
+            },() => {
+               console.log(this.state); 
             })
         })
         promise.catch((err) => {

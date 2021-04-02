@@ -12,7 +12,7 @@ const stateDefault = {
 
 export const GameOanTuTi = (state = stateDefault, action) => {
 
-    console.log(action.type);
+    // console.log(action.type);
    
     switch (action.type) {
         case 'THAY DOI': {
