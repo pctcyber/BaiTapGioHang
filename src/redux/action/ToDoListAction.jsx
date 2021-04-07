@@ -2,30 +2,46 @@ import axios from "axios"
 import { GET_TASK_LIST } from "../setting"
 
 export const getTaskListAction = () => {
-    return dispatch => {
+    return async dispatch => {
 
-        let promise = axios({
-            method: 'GET',
-            url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask'
-        })
-        promise.then((res) => {
-            dispatch({
-                type: GET_TASK_LIST,
-                data: res.data
+        try {
+
+            // nhớ bóc tách tại đây thay vì code  ==> let promise =  await axios({....})
+            let { data, status } = await axios({
+                method: 'GET',
+                url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask'
             })
-        })
 
-        promise.catch((err) => {
-            console.log('that bai');
-            console.log(err.response.data)
-        })
+            if (status === 200) {
+
+                dispatch({
+                    type: GET_TASK_LIST,
+                    data
+                })
+
+            }
+
+        } catch (error) {
+            console.log(error.response.data.Message);
+        }
+        // promise.then((res) => {
+        //     dispatch({
+        //         type: GET_TASK_LIST,
+        //         data: res.data
+        //     })
+        // })
+
+        // promise.catch((err) => {
+        //     console.log('that bai');
+        //     console.log(err.response.data)
+        // })
 
 
     }
 }
 
 export const addTaskAction = (taskName) => {
-    
+
     return dispatch => {
         let promise = axios({
             method: 'POST',
@@ -34,9 +50,9 @@ export const addTaskAction = (taskName) => {
                 taskName
             }
         })
-        
+
         promise.then(() => {
-            
+
             dispatch(getTaskListAction())
             alert('success')
         })
@@ -68,7 +84,7 @@ export const deleteTaskAction = (taskName) => {
             alert(err.response.data)
         })
     }
-    
+
 }
 
 
@@ -90,7 +106,7 @@ export const taskRejectAction = (taskName) => {
         })
 
     }
-    
+
 }
 
 export const taskDoneAction = taskName => {
@@ -100,8 +116,8 @@ export const taskDoneAction = taskName => {
             method: "PUT",
             url: `http://svcy.myclass.vn/api/ToDoList/doneTask?taskName=${taskName}`
         })
-    
+
         dispatch(getTaskListAction())
-    
+
     }
 }
