@@ -3,6 +3,7 @@ import {gioHangReducer} from './GioHangReducer.jsx'
 import {chiTietReducer} from './ChiTietReducer.jsx'
 import {taiXiuReducer} from './TaiXiuReducer.jsx'
 import {GameOanTuTi} from './GameOanTuTi'
+import {ToDoListReducer} from './ToDoListReducer'
 
 export const rootReducer = combineReducers({
 
@@ -10,5 +11,5 @@ export const rootReducer = combineReducers({
     ChiTietReducer: chiTietReducer,
     TaiXiuReducer: taiXiuReducer,
     GameOanTuTi: GameOanTuTi,
-
+    ToDoListReducer,
 })

@@ -1,8 +1,13 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { GET_TASK_LIST } from '../redux/setting';
+import { addTaskAction, deleteTaskAction, getTaskListAction, taskDoneAction, taskRejectAction } from '../redux/action/ToDoListAction';
 
-export default function ToDoListRFC() {
+export default function ToDoListRedux() {
 
+    const {taskList} = useSelector(state => state.ToDoListReducer)
+    const usedispatch = useDispatch();
     const [state, setState] = useState({
 
         value: {
@@ -14,7 +19,7 @@ export default function ToDoListRFC() {
     })
 
     const renderTaskCompleted = () => {
-        return state.taskLisk.filter(task => task.status).map((task, index) => {
+        return taskList.filter(task => task.status).map((task, index) => {
             return <li key={index}>
                 {task.taskName}
                 <i className="fa fa-trash-alt" style={{ cursor: 'pointer', marginLeft: 193, marginRight: 10 }} onClick={() => {
@@ -28,7 +33,7 @@ export default function ToDoListRFC() {
     }
 
     const renderTaskUncompleted = () => {
-        return state.taskLisk.filter(task => !task.status).map((task, index) => {
+        return taskList.filter(task => !task.status).map((task, index) => {
             return <li key={index} style={{ justifyContent: 'normal', color: 'green' }}>
                 {task.taskName}
 
@@ -43,24 +48,7 @@ export default function ToDoListRFC() {
 
     }
     const getTaskList = () => {
-
-        let promise = axios({
-            method: 'GET',
-            url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask'
-        })
-        promise.then((res) => {
-
-            setState({
-                ...state,
-                taskLisk: res.data
-            })
-        })
-
-        promise.catch((err) => {
-            console.log('that bai');
-            console.log(err.respone.data)
-        })
-
+        usedispatch(getTaskListAction())
     }
 
     useEffect(() => {
@@ -70,22 +58,8 @@ export default function ToDoListRFC() {
     const addTask = (event) => {
 
         event.preventDefault();
-        console.log(state.error.taskName);
         if (state.error.taskName === '') {
-            let promise = axios({
-                method: 'POST',
-                url: 'http://svcy.myclass.vn/api/ToDoList/AddTask',
-                data: {
-                    taskName: state.value.taskName
-                }
-            })
-            promise.then(() => {
-                getTaskList()
-
-            })
-            promise.catch((err) => {
-                alert(err.response.data)
-            })
+            usedispatch(addTaskAction(state.value.taskName))
         } else {
             alert('nhap lai cho dung')
         }
@@ -115,49 +89,20 @@ export default function ToDoListRFC() {
         })
 
     }
+    
     const taskReject = (task) => {
 
-        let promise = axios({
-            method: 'PUT',
-            url: `http://svcy.myclass.vn/api/ToDoList/rejectTask?taskName=${task.taskName}`
-        })
-
-        promise.then((res) => {
-            alert(res.data);
-            getTaskList();
-        })
-
-        promise.catch((err) => {
-            alert(err.respone.data)
-        })
-
+        usedispatch(taskRejectAction(task.taskName))
     }
 
     const deletedTask = (task) => {
-
-        let promise = axios({
-            method: 'DELETE',
-            url: `http://svcy.myclass.vn/api/ToDoList/deleteTask?taskName=${task.taskName}`
-        })
-
-        promise.then(() => {
-            getTaskList()
-        })
-
-        promise.catch((err) => {
-            console.log(err)
-        })
+        usedispatch(deleteTaskAction(task.taskName))
 
     }
 
-    const taskDone = async (task) => {
+    const taskDone =  (task) => {
 
-        let promise = await axios({
-            method: "PUT",
-            url: `http://svcy.myclass.vn/api/ToDoList/doneTask?taskName=${task.taskName}`
-        })
-
-        getTaskList()
+     usedispatch(taskDoneAction(task.taskName))
 
     }
     return (
