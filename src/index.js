@@ -11,9 +11,17 @@ import { createStore,applyMiddleware } from 'redux'
 import {rootReducer} from './redux/reducer/rootReducer'
 import thunk from 'redux-thunk'
 
-const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ &&
-   window.__REDUX_DEVTOOLS_EXTENSION__(),applyMiddleware(thunk));
+// middleware saga
+import createMiddleWareSaga from 'redux-saga'
+import { rootSaga } from './redux/sagas/rootSaga';
+const middleWareSaga = createMiddleWareSaga()
 
+
+const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION__(),applyMiddleware(thunk,middleWareSaga));
+  
+  // gọi saga
+  middleWareSaga.run(rootSaga)
 
 ReactDOM.render(
   // <React.StrictMode>
