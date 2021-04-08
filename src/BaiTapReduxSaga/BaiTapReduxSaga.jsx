@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function BaiTapReduxSaga() {
 
+    const usedispatch = useDispatch()
+    const {taskList} = useSelector(state => state.ToDoListReducer)
     const [state, setState] = useState({
 
-        taskList: [],
         value: {
             taskName: ''
         },
@@ -15,7 +17,7 @@ export default function BaiTapReduxSaga() {
     })
 
     const renderTaskCompleted = () => {
-        return state.taskList.filter(task => task.status).map((task, index) => {
+        return taskList.filter(task => task.status).map((task, index) => {
             return <li key={index}>
                 {task.taskName}
                 <i className="fa fa-trash-alt" style={{ cursor: 'pointer', marginLeft: 193, marginRight: 10 }} onClick={() => {
@@ -29,7 +31,7 @@ export default function BaiTapReduxSaga() {
     }
 
     const renderTaskUncompleted = () => {
-        return state.taskList.filter(task => !task.status).map((task, index) => {
+        return taskList.filter(task => !task.status).map((task, index) => {
             return <li key={index} style={{ justifyContent: 'normal', color: 'green' }}>
                 {task.taskName}
 
@@ -48,7 +50,7 @@ export default function BaiTapReduxSaga() {
     }
 
     // useEffect(() => {
-       
+
     // }, [])
 
     const addTask = (event) => {
@@ -86,7 +88,7 @@ export default function BaiTapReduxSaga() {
 
     const deletedTask = (task) => {
 
-       
+
     }
 
     const taskDone = async (task) => {
@@ -103,11 +105,21 @@ export default function BaiTapReduxSaga() {
         <form onSubmit={addTask}>
 
             <div className="card">
+                <div>
+                    <button className='btn btn-success' onClick = {(event) => {
+                        event.preventDefault();
+                       usedispatch({
+                           type:'getTaskListApiAction'
+                       })
+                    }}>Dispatch GetTaskListApiAction</button>
+                </div>
                 <div className="card__header">
                     <img src="./img/X2oObC4.png" />
                 </div>
                 {/* <h2>hello!</h2> */}
                 <div className="card__body">
+
+
                     <div className="filter-btn">
                         <a id="one" href="#"><i className="fa fa-check-circle" /></a>
                         <a id="two" href="#" ><i className="fa fa-sort-alpha-down" /></a>
