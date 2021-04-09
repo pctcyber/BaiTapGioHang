@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TASK_LIST_API_ACTION, GET_TASK_LIST_API_ACTION } from '../redux/setting';
 
 export default function BaiTapReduxSaga() {
 
@@ -47,8 +48,8 @@ export default function BaiTapReduxSaga() {
     }
     const getTaskList = () => {
         usedispatch({
-            type:'getTaskListApiAction',
-             value:123                          
+            type:GET_TASK_LIST_API_ACTION,
+                                     
         })
     }
 
@@ -57,7 +58,11 @@ export default function BaiTapReduxSaga() {
     }, [])
 
     const addTask = (event) => {
-
+        event.preventDefault();
+        usedispatch({
+            type: ADD_TASK_LIST_API_ACTION,
+            value: state.value.taskName
+        })
 
     }
 
@@ -139,9 +144,7 @@ export default function BaiTapReduxSaga() {
                         <div className="card__add">
                             <input name='taskName' onChange={handleChange} id="newTask"
                                 type="text" placeholder="Enter an activity..." />
-                            <button onClick={(event) => {
-                                addTask(event)
-                            }} id="addItem">
+                            <button onClick={addTask} id="addItem">
                                 <i className="fa fa-plus" />
                             </button>
                         </div>

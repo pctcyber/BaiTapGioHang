@@ -1,3 +1,5 @@
+import { HIDDEN_LOADING } from "../setting";
+
 const stateDefault = {
 
     isLoading: true,
@@ -10,7 +12,7 @@ export const LoadingReducer =  (state = stateDefault, action) => {
         //     state.isLoading = true;
         //     return { ...state }
         // }
-        case 'HIDDEN_LOADING': {
+        case HIDDEN_LOADING: {
 
             state.isLoading = false;
             return { ...state }
