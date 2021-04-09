@@ -6,6 +6,7 @@ import GameXucXac from './BaiTapRedux/GameXucXac/GameXucXac';
 import BaiTapReduxSaga from './BaiTapReduxSaga/BaiTapReduxSaga';
 import BTLayout from './BTLayout/BTLayout';
 import DemoQLSP from './DemoQLSP/DemoQLSP';
+import LoadingComponent from './GlobalSetting/LoadingComponent/LoadingComponent';
 import ToDoListRCC from './ToDoList/ToDoListRCC';
 import ToDoListRedux from './ToDoList/ToDoListRedux';
 import ToDoListRFC from './ToDoList/ToDoListRFC';
@@ -21,6 +22,7 @@ function App() {
       {/* <ToDoListRFC/> */}
       {/* <ToDoListRCC/> */}
       {/* <ToDoListRedux/> */}
+      <LoadingComponent/>
       <BaiTapReduxSaga/>
     </div>
   );

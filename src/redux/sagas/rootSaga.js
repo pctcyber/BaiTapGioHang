@@ -1,50 +1,21 @@
-import axios from 'axios'
-import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects'
-import { GET_TASK_LIST } from '../setting'
 
-function* getTaskListApi(action) {
-    // trường hợp 2
-    // while(true){
-    //     yield take('getTaskListApiAction') // theo dõi action, xem action nào dispatch mới làm các công việc bên dưới
-    //     console.log('getTaskListApi');
-    // }
+// cách 1: import có * as là import nguyên file đó
+import { all } from '@redux-saga/core/effects'
+// import * as ToDoListSaga from './ToDoListSaga'
+// cách 2: import từng cái export trong file đó
+import  {theoDoiActionGetTaskApi} from './ToDoListSaga'
 
-    // trường hợp 1:
-    // yield take('getTaskListApiAction')
-    // console.log({action});
-
-    // yield take('getTaskListApiAction')
-    // console.log('getTask2');
-
-    // trường hợp 3:
-    // yield delay(3000)
-    // console.log({action});
-
-    let {data,status} = yield call(() => {
-        return axios({
-            method: 'GET',
-            url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask'
-        })
-    })
-
-    // console.log(data,status);
-    // sau khi lấy giá trị thành công dùng put() ==> giống dispatch trong thunk
-
-    yield put({
-        type: GET_TASK_LIST,    
-        data
-    })
-
-}
 
 export function* rootSaga() {
 
-    // trường hợp 1 + 2:
-    // yield fork(getTaskListApi) // non blocking: chạy ko cần chờ
-    // console.log('rootsaga');
+    // yield all: nhận vào 1 mảng các saga, và chạy nhiều saga cùng lúc
+    yield all([
 
-    // trường hợp 3:
-    // yield takeEvery('getTaskListApiAction',getTaskListApi)
-    yield takeLatest('getTaskListApiAction',getTaskListApi)
+        // nghiệp vụ theo dõi action saga ToDoList
+        theoDoiActionGetTaskApi()
+
+        // các nghiệp vụ khác...
+
+    ])
 
 }

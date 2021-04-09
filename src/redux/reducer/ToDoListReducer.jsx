@@ -5,8 +5,11 @@ const stateDefault = {
 }
 
 export const ToDoListReducer = (state = stateDefault, action) => {
+  
+  
+    console.log(action);
     switch (action.type) {
-
+        
     case GET_TASK_LIST:{
         state.taskList = action.data
         return { ...state}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function BaiTapReduxSaga() {
@@ -46,12 +46,15 @@ export default function BaiTapReduxSaga() {
 
     }
     const getTaskList = () => {
-
+        usedispatch({
+            type:'getTaskListApiAction',
+             value:123                          
+        })
     }
 
-    // useEffect(() => {
-
-    // }, [])
+    useEffect(() => {
+        getTaskList()
+    }, [])
 
     const addTask = (event) => {
 
@@ -106,12 +109,10 @@ export default function BaiTapReduxSaga() {
 
             <div className="card">
                 <div>
-                    <button className='btn btn-success' onClick = {(event) => {
+                    {/* <button className='btn btn-success' onClick = {(event) => {
                         event.preventDefault();
-                       usedispatch({
-                           type:'getTaskListApiAction'
-                       })
-                    }}>Dispatch GetTaskListApiAction</button>
+                      getTaskList()
+                    }}>Dispatch GetTaskListApiAction</button> */}
                 </div>
                 <div className="card__header">
                     <img src="./img/X2oObC4.png" />
