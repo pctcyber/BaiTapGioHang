@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_TASK_LIST_API_ACTION, GET_TASK_LIST_API_ACTION } from '../redux/setting';
+import { ADD_TASK_LIST_API_ACTION, DELETED_TASK_LIST_API_ACTION, DONE_TASK_LIST_API_ACTION, GET_TASK_LIST_API_ACTION, REJECT_TASK_LIST_API_ACTION } from '../redux/setting';
 
 export default function BaiTapReduxSaga() {
 
     const usedispatch = useDispatch()
-    const {taskList} = useSelector(state => state.ToDoListReducer)
+    const { taskList } = useSelector(state => state.ToDoListReducer)
     const [state, setState] = useState({
 
         value: {
@@ -22,10 +22,10 @@ export default function BaiTapReduxSaga() {
             return <li key={index}>
                 {task.taskName}
                 <i className="fa fa-trash-alt" style={{ cursor: 'pointer', marginLeft: 193, marginRight: 10 }} onClick={() => {
-                    deletedTask(task)
+                    deletedTask(task.taskName)
                 }}></i>
                 <i className="fa fa-undo" style={{ cursor: 'pointer' }} onClick={() => {
-                    taskReject(task)
+                    taskReject(task.taskName)
                 }}></i>
             </li>
         })
@@ -37,10 +37,10 @@ export default function BaiTapReduxSaga() {
                 {task.taskName}
 
                 <i className="fa fa-trash-alt" style={{ cursor: 'pointer', marginLeft: 193, marginRight: 10 }} onClick={() => {
-                    deletedTask(task)
+                    deletedTask(task.taskName)
                 }}></i>
                 <i className="fa fa-check" style={{ cursor: 'pointer' }} onClick={() => {
-                    taskDone(task)
+                    taskDone(task.taskName)
                 }}></i>
             </li>
         })
@@ -48,8 +48,8 @@ export default function BaiTapReduxSaga() {
     }
     const getTaskList = () => {
         usedispatch({
-            type:GET_TASK_LIST_API_ACTION,
-                                     
+            type: GET_TASK_LIST_API_ACTION,
+
         })
     }
 
@@ -89,24 +89,28 @@ export default function BaiTapReduxSaga() {
         })
 
     }
-    const taskReject = (task) => {
-
-
-    }
-
-    const deletedTask = (task) => {
-
-
-    }
-
-    const taskDone = async (task) => {
-
-        let promise = await axios({
-            method: "PUT",
-            url: `http://svcy.myclass.vn/api/ToDoList/doneTask?taskName=${task.taskName}`
+    const taskReject = (taskName) => {
+        usedispatch({
+            type: REJECT_TASK_LIST_API_ACTION,
+            taskName
         })
 
-        getTaskList()
+    }
+
+    const deletedTask = (taskName) => {
+        usedispatch({
+            type: DELETED_TASK_LIST_API_ACTION,
+            taskName: taskName
+        })
+
+    }
+
+    const taskDone = (taskName) => {
+
+        usedispatch({
+            type: DONE_TASK_LIST_API_ACTION,
+            taskName
+        })
 
     }
     return (

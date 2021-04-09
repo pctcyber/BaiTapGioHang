@@ -3,7 +3,7 @@
 import { all } from '@redux-saga/core/effects'
 // import * as ToDoListSaga from './ToDoListSaga'
 // cách 2: import từng cái export trong file đó
-import  {theoDoiActionAddTaskApi, theoDoiActionGetTaskApi} from './ToDoListSaga'
+import  {theoDoiActionAddTaskApi, theoDoiActionDeletedTask, theoDoiActionDoneTask, theoDoiActionGetTaskApi, theoDoiActionRejectTask} from './ToDoListSaga'
 
 
 export function* rootSaga() {
@@ -13,7 +13,10 @@ export function* rootSaga() {
 
         // nghiệp vụ theo dõi action saga ToDoList
         theoDoiActionGetTaskApi(),
-        theoDoiActionAddTaskApi()
+        theoDoiActionAddTaskApi(),
+        theoDoiActionDeletedTask(),
+        theoDoiActionDoneTask(),
+        theoDoiActionRejectTask()
         // các nghiệp vụ khác...
 
     ])
